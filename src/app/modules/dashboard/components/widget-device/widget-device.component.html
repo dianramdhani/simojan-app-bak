@@ -1,14 +1,36 @@
 <ion-card>
-  <ion-card-header>
-    <ion-row class="ion-justify-content-between ion-align-items-center">
-      <ion-card-title>Status Device</ion-card-title>
-      <ion-button fill="clear">
-        <ion-icon slot="icon-only" name="cog"></ion-icon>
-      </ion-button>
-    </ion-row>
-  </ion-card-header>
+  <ion-list>
+    <ion-list-header>
+      <ion-grid class="ion-no-padding">
+        <ion-row class="d-flex ion-justify-content-between ion-align-items-center">
+          <h1 class="ion-no-margin">Device</h1>
+          <ion-button fill="clear">
+            <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
+          </ion-button>
+        </ion-row>
+      </ion-grid>
+    </ion-list-header>
 
-  <!-- <ion-card-content>
-  </ion-card-content> -->
+    <ion-item>
+      <ion-label>
+        <small>Status</small>
+        <h2>Connected</h2>
+      </ion-label>
+    </ion-item>
 
+    <ion-item>
+      <ion-label>
+        <small>Name</small>
+        <h2>Testing</h2>
+      </ion-label>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label>
+        <small>Bluetooth ID</small>
+        <h2>BLA::BLA::BLA::BLA</h2>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
 </ion-card>
