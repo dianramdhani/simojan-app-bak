@@ -1,16 +1,18 @@
 <ion-card>
-  <ion-list>
-    <ion-list-header>
+  <ion-card-header class="ion-no-padding ion-padding-top ion-padding-horizontal">
+    <ion-card-title>
       <ion-grid class="ion-no-padding">
         <ion-row class="d-flex ion-justify-content-between ion-align-items-center">
           Device
-          <ion-button fill="clear" class="ion-no-padding ion-margin-end btn-icon">
+          <ion-button fill="clear" class="ion-no-padding btn-icon">
             <ion-icon slot="icon-only" name="aperture-outline"></ion-icon>
           </ion-button>
         </ion-row>
       </ion-grid>
-    </ion-list-header>
+    </ion-card-title>
+  </ion-card-header>
 
+  <ion-list>
     <ion-item>
       <ion-label>
         <small>Bluetooth Status</small>
@@ -38,6 +40,5 @@
         <h2>Connect</h2>
       </ion-label>
     </ion-item>
-
   </ion-list>
 </ion-card>
