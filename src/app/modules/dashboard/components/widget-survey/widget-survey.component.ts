@@ -6,9 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./widget-survey.component.scss'],
 })
 export class WidgetSurveyComponent implements OnInit {
+  eventRunning = false;
+  mapOnline = false;
 
   constructor() { }
 
-  ngOnInit() {}
-
+  ngOnInit() { }
 }
