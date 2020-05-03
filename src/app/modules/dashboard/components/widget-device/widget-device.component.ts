@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { DeviceSetupComponent } from '../../pages/device-setup/device-setup.component';
 
 @Component({
   selector: 'app-widget-device',
@@ -7,8 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WidgetDeviceComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private modalController: ModalController
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
+  async setupDevice() {
+    const modal = await this.modalController.create({
+      component: DeviceSetupComponent
+    });
+    return await modal.present();
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-device-setup',
@@ -6,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./device-setup.component.scss'],
 })
 export class DeviceSetupComponent implements OnInit {
+  constructor(
+    public modalController: ModalController
+  ) { }
 
-  constructor() { }
-
-  ngOnInit() {}
-
+  ngOnInit() { }
 }

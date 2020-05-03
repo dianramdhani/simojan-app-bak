@@ -7,6 +7,7 @@ import { DashboardPageRoutingModule } from './dashboard-routing.module';
 import { DashboardPage } from './dashboard.page';
 import { WidgetDeviceComponent } from './components/widget-device/widget-device.component';
 import { WidgetSurveyComponent } from './components/widget-survey/widget-survey.component';
+import { DeviceSetupComponent } from './pages/device-setup/device-setup.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,11 @@ import { WidgetSurveyComponent } from './components/widget-survey/widget-survey.
   declarations: [
     DashboardPage,
     WidgetDeviceComponent,
-    WidgetSurveyComponent
+    WidgetSurveyComponent,
+    DeviceSetupComponent
+  ],
+  entryComponents: [
+    DeviceSetupComponent
   ]
 })
 export class DashboardPageModule { }

@@ -4,7 +4,7 @@
       <ion-grid class="ion-no-padding">
         <ion-row class="d-flex ion-justify-content-between ion-align-items-center">
           Device
-          <ion-button fill="clear" class="ion-no-padding btn-icon">
+          <ion-button fill="clear" class="ion-no-padding btn-icon" (click)="setupDevice()">
             <ion-icon slot="icon-only" name="aperture-outline"></ion-icon>
           </ion-button>
         </ion-row>
@@ -15,28 +15,36 @@
   <ion-list>
     <ion-item>
       <ion-label>
-        <small>Bluetooth Status</small>
+        <small>
+          <ion-text color="secondary">Bluetooth Status</ion-text>
+        </small>
         <h2>Connected</h2>
       </ion-label>
     </ion-item>
 
     <ion-item>
       <ion-label>
-        <small>Name</small>
+        <small>
+          <ion-text color="secondary">Name</ion-text>
+        </small>
         <h2>Testing</h2>
       </ion-label>
     </ion-item>
 
     <ion-item>
       <ion-label>
-        <small>Bluetooth ID</small>
+        <small>
+          <ion-text color="secondary">Bluetooth ID</ion-text>
+        </small>
         <h2>BLA::BLA::BLA::BLA</h2>
       </ion-label>
     </ion-item>
 
     <ion-item lines="none">
       <ion-label>
-        <small>Internet Status</small>
+        <small>
+          <ion-text color="secondary">Internet Status</ion-text>
+        </small>
         <h2>Connect</h2>
       </ion-label>
     </ion-item>
