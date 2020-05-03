@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { DeviceSetupComponent } from '../../pages/device-setup/device-setup.component';
 
 @Component({
@@ -11,7 +11,8 @@ export class WidgetDeviceComponent implements OnInit {
   deviceConnected = false;
 
   constructor(
-    private modalController: ModalController
+    private modalController: ModalController,
+    private alertController: AlertController
   ) { }
 
   ngOnInit() { }
@@ -22,5 +23,27 @@ export class WidgetDeviceComponent implements OnInit {
     });
     await modal.present();
     this.deviceConnected = true;
+  }
+
+  async disconnect() {
+    const alert = await this.alertController.create({
+      header: 'Disconnect device?',
+      message: 'Are you sure you want to disconnect this device? Your data survey from this device will be stopped.',
+      buttons: [
+        {
+          text: 'No',
+          role: 'no',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            this.deviceConnected = false;
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 }

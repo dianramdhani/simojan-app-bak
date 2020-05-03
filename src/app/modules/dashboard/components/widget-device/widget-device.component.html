@@ -7,7 +7,7 @@
     <ion-item>
       <ion-label>
         <small>
-          <ion-text color="secondary">Bluetooth Status</ion-text>
+          <ion-text color="secondary">Device Status</ion-text>
         </small>
         <h2>Connected</h2>
       </ion-label>
@@ -42,7 +42,7 @@
   </ion-list>
 
   <div class="ion-padding">
-    <ion-button expand="block" class="ion-no-margin" color="danger" (click)="deviceConnected = false">
+    <ion-button expand="block" class="ion-no-margin" color="danger" (click)="disconnect()">
       <ion-icon src="assets/unlink-solid.svg" slot="start"></ion-icon>
       Disconnect
     </ion-button>
@@ -58,7 +58,7 @@
     <ion-item>
       <ion-label>
         <small>
-          <ion-text color="secondary">Bluetooth Status</ion-text>
+          <ion-text color="secondary">Device Status</ion-text>
         </small>
         <h2>Disconnected</h2>
       </ion-label>
