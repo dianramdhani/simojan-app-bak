@@ -28,7 +28,7 @@ export class WidgetDeviceComponent implements OnInit {
   async disconnect() {
     const alert = await this.alertController.create({
       header: 'Disconnect device?',
-      message: 'Are you sure you want to disconnect this device? Your data survey from this device will be stopped.',
+      message: 'Are you sure you want to disconnect this device? Your data survey will be stopped.',
       buttons: [
         {
           text: 'No',
