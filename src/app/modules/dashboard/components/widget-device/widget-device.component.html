@@ -1,18 +1,9 @@
 <ion-card *ngIf="deviceConnected">
   <ion-card-header class="ion-no-padding ion-padding-top ion-padding-horizontal">
-    <ion-card-title>Device</ion-card-title>
+    <ion-card-title>Device Connected</ion-card-title>
   </ion-card-header>
 
   <ion-list>
-    <ion-item>
-      <ion-label>
-        <small>
-          <ion-text color="secondary">Device Status</ion-text>
-        </small>
-        <h2>Connected</h2>
-      </ion-label>
-    </ion-item>
-
     <ion-item>
       <ion-label>
         <small>
@@ -51,19 +42,8 @@
 
 <ion-card *ngIf="!deviceConnected">
   <ion-card-header class="ion-no-padding ion-padding-top ion-padding-horizontal">
-    <ion-card-title>Device</ion-card-title>
+    <ion-card-title>Device Disconnected</ion-card-title>
   </ion-card-header>
-
-  <ion-list>
-    <ion-item>
-      <ion-label>
-        <small>
-          <ion-text color="secondary">Device Status</ion-text>
-        </small>
-        <h2>Disconnected</h2>
-      </ion-label>
-    </ion-item>
-  </ion-list>
 
   <div class="ion-padding">
     <ion-button expand="block" class="ion-no-margin" (click)="setupDevice()">
