@@ -8,6 +8,7 @@ import { DashboardPage } from './dashboard.page';
 import { WidgetDeviceComponent } from './components/widget-device/widget-device.component';
 import { WidgetSurveyComponent } from './components/widget-survey/widget-survey.component';
 import { DeviceSetupComponent } from './pages/device-setup/device-setup.component';
+import { SurveyRunningComponent } from './components/widget-survey/survey-running/survey-running.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { DeviceSetupComponent } from './pages/device-setup/device-setup.componen
     DashboardPage,
     WidgetDeviceComponent,
     WidgetSurveyComponent,
-    DeviceSetupComponent
+    DeviceSetupComponent,
+    SurveyRunningComponent
   ],
   entryComponents: [
     DeviceSetupComponent
