@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Device Setup</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="modalController.dismiss()">Close</ion-button>
+      <ion-button (click)="modalController.dismiss()">Cancel</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -10,39 +10,25 @@
   <form>
     <ion-list lines="full" class="ion-no-margin ion-no-padding">
       <ion-item>
-        <ion-label position="stacked">First Name <ion-text color="danger">*</ion-text>
+        <ion-label position="stacked">Select Bluetooth <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+        <ion-select value="notifications" interface="action-sheet">
+          <ion-select-option value="enable">Enable</ion-select-option>
+          <ion-select-option value="mute">Mute</ion-select-option>
+          <ion-select-option value="mute_week">Mute for a week</ion-select-option>
+          <ion-select-option value="mute_year">Mute for a year</ion-select-option>
+        </ion-select>
       </ion-item>
 
       <ion-item>
-        <ion-label position="stacked">Last Name <ion-text color="danger">*</ion-text>
+        <ion-label position="stacked">Name <ion-text color="danger">*</ion-text>
         </ion-label>
         <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="floating">Title</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="stacked">Address</ion-label>
-        <ion-input placeholder="Address Line 1"></ion-input>
-        <ion-input placeholder="Address Line 2"></ion-input>
-        <ion-input placeholder="City"></ion-input>
-        <ion-input placeholder="State"></ion-input>
-        <ion-input placeholder="Zip Code"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="stacked">Notes</ion-label>
-        <ion-textarea></ion-textarea>
       </ion-item>
     </ion-list>
 
     <div class="ion-padding">
-      <ion-button expand="block" type="submit" class="ion-no-margin">Create account</ion-button>
+      <ion-button expand="block" type="submit" class="ion-no-margin">Connect</ion-button>
     </div>
   </form>
 </ion-content>
