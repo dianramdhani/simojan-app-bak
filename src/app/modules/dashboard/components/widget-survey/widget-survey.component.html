@@ -1,20 +1,6 @@
 <ion-card>
   <ion-card-header class="ion-no-padding ion-padding-top ion-padding-horizontal">
-    <ion-card-title>
-      <ion-grid class="ion-no-padding">
-        <ion-row class="d-flex ion-justify-content-between ion-align-items-center">
-          Survey Running
-          <span>
-            <ion-button fill="clear" class="ion-no-padding btn-icon" color="dark">
-              <ion-icon slot="icon-only" name="alert-circle-outline"></ion-icon>
-            </ion-button>
-            <ion-button fill="clear" class="ion-no-padding btn-icon" color="danger">
-              <ion-icon slot="icon-only" name="stop-circle-outline"></ion-icon>
-            </ion-button>
-          </span>
-        </ion-row>
-      </ion-grid>
-    </ion-card-title>
+    <ion-card-title>Survey Running</ion-card-title>
   </ion-card-header>
 
   <ion-list>
@@ -57,7 +43,7 @@
         </ion-label>
       </ion-item>
 
-      <ion-item lines="none">
+      <ion-item>
         <ion-label>
           <small>
             <ion-text color="secondary">Longitude</ion-text>
@@ -66,6 +52,16 @@
         </ion-label>
       </ion-item>
     </ion-item-group>
-
   </ion-list>
+
+  <div class="ion-padding">
+    <ion-button expand="block" class="ion-no-margin ion-margin-bottom" color="warning">
+      <ion-icon name="alert-outline" slot="start"></ion-icon>
+      Add Event
+    </ion-button>
+    <ion-button expand="block" class="ion-no-margin" color="danger">
+      <ion-icon name="stop-outline" slot="start"></ion-icon>
+      Stop
+    </ion-button>
+  </div>
 </ion-card>
