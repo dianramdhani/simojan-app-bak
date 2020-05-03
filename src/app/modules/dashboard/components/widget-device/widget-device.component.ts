@@ -8,6 +8,7 @@ import { DeviceSetupComponent } from '../../pages/device-setup/device-setup.comp
   styleUrls: ['./widget-device.component.scss'],
 })
 export class WidgetDeviceComponent implements OnInit {
+  deviceConnected = false;
 
   constructor(
     private modalController: ModalController
@@ -19,6 +20,7 @@ export class WidgetDeviceComponent implements OnInit {
     const modal = await this.modalController.create({
       component: DeviceSetupComponent
     });
-    return await modal.present();
+    await modal.present();
+    this.deviceConnected = true;
   }
 }

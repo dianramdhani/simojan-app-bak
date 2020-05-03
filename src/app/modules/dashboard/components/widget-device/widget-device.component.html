@@ -1,15 +1,6 @@
-<ion-card>
+<ion-card *ngIf="deviceConnected">
   <ion-card-header class="ion-no-padding ion-padding-top ion-padding-horizontal">
-    <ion-card-title>
-      <ion-grid class="ion-no-padding">
-        <ion-row class="d-flex ion-justify-content-between ion-align-items-center">
-          Device
-          <ion-button fill="clear" class="ion-no-padding btn-icon" (click)="setupDevice()">
-            <ion-icon slot="icon-only" name="aperture-outline"></ion-icon>
-          </ion-button>
-        </ion-row>
-      </ion-grid>
-    </ion-card-title>
+    <ion-card-title>Device</ion-card-title>
   </ion-card-header>
 
   <ion-list>
@@ -40,7 +31,7 @@
       </ion-label>
     </ion-item>
 
-    <ion-item lines="none">
+    <ion-item>
       <ion-label>
         <small>
           <ion-text color="secondary">Internet Status</ion-text>
@@ -49,4 +40,35 @@
       </ion-label>
     </ion-item>
   </ion-list>
+
+  <div class="ion-padding">
+    <ion-button expand="block" class="ion-no-margin" color="danger" (click)="deviceConnected = false">
+      <ion-icon src="assets/unlink-solid.svg" slot="start"></ion-icon>
+      Disconnect
+    </ion-button>
+  </div>
+</ion-card>
+
+<ion-card *ngIf="!deviceConnected">
+  <ion-card-header class="ion-no-padding ion-padding-top ion-padding-horizontal">
+    <ion-card-title>Device</ion-card-title>
+  </ion-card-header>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>
+        <small>
+          <ion-text color="secondary">Bluetooth Status</ion-text>
+        </small>
+        <h2>Disconnected</h2>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <div class="ion-padding">
+    <ion-button expand="block" class="ion-no-margin" (click)="setupDevice()">
+      <ion-icon name="settings-outline" slot="start"></ion-icon>
+      Setup Device
+    </ion-button>
+  </div>
 </ion-card>

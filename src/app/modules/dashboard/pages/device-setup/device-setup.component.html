@@ -1,6 +1,6 @@
 <ion-header translucent>
   <ion-toolbar>
-    <ion-title>Device Setup</ion-title>
+    <ion-title>Setup Device</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="modalController.dismiss()">Cancel</ion-button>
     </ion-buttons>
@@ -28,7 +28,10 @@
     </ion-list>
 
     <div class="ion-padding">
-      <ion-button expand="block" type="submit" class="ion-no-margin">Connect</ion-button>
+      <ion-button expand="block" type="submit" class="ion-no-margin" (click)="modalController.dismiss()">
+        <ion-icon src="assets/link-solid.svg" slot="start"></ion-icon>
+        Connect
+      </ion-button>
     </div>
   </form>
 </ion-content>
