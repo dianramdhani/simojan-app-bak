@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, AlertController } from '@ionic/angular';
+
 import { DeviceSetupComponent } from '../../pages/device-setup/device-setup.component';
+import { DeviceService } from 'src/app/data/services/device.service';
 
 @Component({
   selector: 'app-widget-device',
@@ -12,10 +14,16 @@ export class WidgetDeviceComponent implements OnInit {
 
   constructor(
     private modalController: ModalController,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private deviceService: DeviceService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.deviceService.isConnect()
+      .subscribe(deviceConnected => {
+        this.deviceConnected = deviceConnected;
+      });
+  }
 
   async setupDevice() {
     const modal = await this.modalController.create({
