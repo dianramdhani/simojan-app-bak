@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { CreateSurveyComponent } from '../../../pages/create-survey/create-survey.component';
 
 @Component({
   selector: 'app-survey-history',
@@ -8,12 +10,17 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class SurveyHistoryComponent implements OnInit {
   @Output() switchSurvey = new EventEmitter<'running'>();
 
-  constructor() { }
+  constructor(
+    private modalController: ModalController
+  ) { }
 
   ngOnInit() { }
 
-  create() {
-    console.log('tes');
-    this.switchSurvey.emit('running');
+  async create() {
+    // this.switchSurvey.emit('running');
+    const modal = await this.modalController.create({
+      component: CreateSurveyComponent
+    });
+    await modal.present();
   }
 }

@@ -10,6 +10,7 @@ import { WidgetSurveyComponent } from './components/widget-survey/widget-survey.
 import { DeviceSetupComponent } from './pages/device-setup/device-setup.component';
 import { SurveyRunningComponent } from './components/widget-survey/survey-running/survey-running.component';
 import { SurveyHistoryComponent } from './components/widget-survey/survey-history/survey-history.component';
+import { CreateSurveyComponent } from './pages/create-survey/create-survey.component';
 
 @NgModule({
   imports: [
@@ -25,10 +26,12 @@ import { SurveyHistoryComponent } from './components/widget-survey/survey-histor
     WidgetSurveyComponent,
     DeviceSetupComponent,
     SurveyRunningComponent,
-    SurveyHistoryComponent
+    SurveyHistoryComponent,
+    CreateSurveyComponent
   ],
   entryComponents: [
-    DeviceSetupComponent
+    DeviceSetupComponent,
+    CreateSurveyComponent
   ]
 })
 export class DashboardPageModule { }
