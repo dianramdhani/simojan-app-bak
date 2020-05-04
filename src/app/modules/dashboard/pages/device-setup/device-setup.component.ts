@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Bluetooth } from '@data/schema/bluetooth';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Device } from '@data/schema/device';
+import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 
 @Component({
   selector: 'app-device-setup',
@@ -17,27 +18,35 @@ export class DeviceSetupComponent implements OnInit {
 
   constructor(
     public modalController: ModalController,
-    private deviceService: DeviceService
+    private deviceService: DeviceService,
+    private bluetoothSerial: BluetoothSerial
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.listBluetoothObs = this.deviceService.listBluetooth();
 
     this.formDeviceSetup = new FormGroup({
       bluetooth: new FormControl(null, Validators.required),
       deviceName: new FormControl(null, Validators.required)
     });
+
+    await this.bluetoothSerial.disconnect();
   }
 
   connect() {
     const { bluetooth, deviceName } = this.formDeviceSetup.value,
-      device: Device = {
-        address: bluetooth.address,
-        name: bluetooth.name,
-        deviceName,
-        internetStatus: null
-      };
-    this.deviceService.device = device;
-    this.modalController.dismiss();
+      onConnnect = async () => {
+        const device: Device = {
+          address: bluetooth.address,
+          name: bluetooth.name,
+          deviceName,
+          internetStatus: null
+        };
+        this.deviceService.device = device;
+        this.modalController.dismiss();
+      }
+
+    this.bluetoothSerial.connect(bluetooth.address)
+      .subscribe(onConnnect);
   }
 }

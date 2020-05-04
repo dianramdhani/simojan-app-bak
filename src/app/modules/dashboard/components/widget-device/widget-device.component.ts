@@ -4,6 +4,8 @@ import { ModalController, AlertController } from '@ionic/angular';
 import { DeviceSetupComponent } from '../../pages/device-setup/device-setup.component';
 import { DeviceService } from 'src/app/data/services/device.service';
 import { Device } from '@data/schema/device';
+import { async } from '@angular/core/testing';
+import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 
 @Component({
   selector: 'app-widget-device',
@@ -17,7 +19,8 @@ export class WidgetDeviceComponent implements OnInit {
   constructor(
     private modalController: ModalController,
     private alertController: AlertController,
-    private deviceService: DeviceService
+    private deviceService: DeviceService,
+    private bluetoothSerial: BluetoothSerial
   ) { }
 
   ngOnInit() {
@@ -45,7 +48,10 @@ export class WidgetDeviceComponent implements OnInit {
           role: 'no'
         }, {
           text: 'Yes',
-          handler: () => this.deviceService.disconnect()
+          handler: async () => {
+            await this.bluetoothSerial.disconnect();
+            this.deviceService.disconnect();
+          }
         }
       ]
     });

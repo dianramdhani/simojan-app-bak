@@ -13,7 +13,7 @@ export class DeviceService {
 
   constructor(
     private bluetoothSerial: BluetoothSerial,
-    private surveyService: SurveyService
+    private surveyService: SurveyService,
   ) { }
 
   isConnect() {
