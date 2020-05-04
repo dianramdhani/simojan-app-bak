@@ -1,7 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Survey } from '@data/schema/survey';
 import { SurveyService } from '@data/services/survey.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
+import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 
 @Component({
   selector: 'app-survey-running',
@@ -16,7 +17,9 @@ export class SurveyRunningComponent implements OnInit {
 
   constructor(
     private surveyService: SurveyService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private bluetoothSerial: BluetoothSerial,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -34,8 +37,20 @@ export class SurveyRunningComponent implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-            this.surveyService.stop();
-            this.switchSurvey.emit('history');
+            this.bluetoothSerial.write('STOP')
+              .then(() => {
+                this.surveyService.stop();
+                this.switchSurvey.emit('history');
+              })
+              .catch(async err => {
+                console.log(err);
+
+                const toast = await this.toastController.create({
+                  message: 'Stop failed. Please click again stop button!',
+                  duration: 2000
+                });
+                toast.present();
+              });
           }
         }
       ]
