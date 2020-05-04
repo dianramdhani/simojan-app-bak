@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { DeviceService } from '@data/services/device.service';
+import { Observable } from 'rxjs';
+import { Bluetooth } from '@data/schema/bluetooth';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Device } from '@data/schema/device';
 
 @Component({
   selector: 'app-device-setup',
@@ -7,9 +12,32 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./device-setup.component.scss'],
 })
 export class DeviceSetupComponent implements OnInit {
+  listBluetoothObs: Observable<Bluetooth[]>
+  formDeviceSetup: FormGroup;
+
   constructor(
-    public modalController: ModalController
+    public modalController: ModalController,
+    private deviceService: DeviceService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.listBluetoothObs = this.deviceService.listBluetooth();
+
+    this.formDeviceSetup = new FormGroup({
+      bluetooth: new FormControl(null, Validators.required),
+      deviceName: new FormControl(null, Validators.required)
+    });
+  }
+
+  connect() {
+    const { bluetooth, deviceName } = this.formDeviceSetup.value,
+      device: Device = {
+        address: bluetooth.address,
+        name: bluetooth.name,
+        deviceName,
+        internetStatus: null
+      };
+    this.deviceService.setDevice(device);
+    this.modalController.dismiss();
+  }
 }

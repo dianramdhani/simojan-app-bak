@@ -7,28 +7,28 @@
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
-  <form>
+  <form [formGroup]="formDeviceSetup">
     <ion-list lines="full" class="ion-no-margin ion-no-padding">
-      <ion-item>
+      <ion-item *ngIf="listBluetoothObs | async as listBluetooth">
         <ion-label position="stacked">Select Bluetooth <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-select value="notifications" interface="action-sheet">
-          <ion-select-option value="enable">Enable</ion-select-option>
-          <ion-select-option value="mute">Mute</ion-select-option>
-          <ion-select-option value="mute_week">Mute for a week</ion-select-option>
-          <ion-select-option value="mute_year">Mute for a year</ion-select-option>
+        <ion-select value="notifications" interface="action-sheet" formControlName="bluetooth">
+          <ion-select-option *ngFor="let item of listBluetooth" [value]="item">
+            {{ item.name }} - {{ item.address }}
+          </ion-select-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Name <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+        <ion-input type="text" formControlName="deviceName"></ion-input>
       </ion-item>
     </ion-list>
 
     <div class="ion-padding">
-      <ion-button expand="block" type="submit" class="ion-no-margin" (click)="modalController.dismiss()">
+      <ion-button expand="block" type="submit" class="ion-no-margin" [disabled]="!formDeviceSetup.valid"
+        (click)="connect()">
         <ion-icon src="assets/link-solid.svg" slot="start"></ion-icon>
         Connect
       </ion-button>
