@@ -3,6 +3,7 @@ import { Observable, of, from, BehaviorSubject } from 'rxjs';
 import { Device } from '../schema/device';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 import { Bluetooth } from '@data/schema/bluetooth';
+import { SurveyService } from './survey.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class DeviceService {
   public connectSubject = new BehaviorSubject(false);
 
   constructor(
-    private bluetoothSerial: BluetoothSerial
+    private bluetoothSerial: BluetoothSerial,
+    private surveyService: SurveyService
   ) { }
 
   isConnect() {
@@ -21,6 +23,7 @@ export class DeviceService {
   disconnect() {
     this._device = null;
     this.connectSubject.next(false);
+    this.surveyService.stop();
   }
 
   listBluetooth(): Observable<Bluetooth[]> {

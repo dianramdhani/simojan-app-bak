@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { CreateSurveyComponent } from '../../../pages/create-survey/create-survey.component';
+import { DeviceService } from '@data/services/device.service';
 
 @Component({
   selector: 'app-survey-history',
@@ -9,12 +10,17 @@ import { CreateSurveyComponent } from '../../../pages/create-survey/create-surve
 })
 export class SurveyHistoryComponent implements OnInit {
   @Output() switchSurvey = new EventEmitter<'running'>();
+  deviceConnected = false;
 
   constructor(
-    private modalController: ModalController
+    private modalController: ModalController,
+    private deviceService: DeviceService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.deviceService.isConnect()
+      .subscribe(deviceConnected => this.deviceConnected = deviceConnected);
+  }
 
   async create() {
     // this.switchSurvey.emit('running');

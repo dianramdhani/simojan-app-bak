@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { switchMap } from 'rxjs/operators';
 
 import { DeviceService } from '@data/services/device.service';
+import { SurveyService } from '@data/services/survey.service';
 
 @Component({
   selector: 'app-widget-survey',
@@ -11,13 +13,27 @@ export class WidgetSurveyComponent implements OnInit {
   switchHistoryRunning = true;
 
   constructor(
-    private deviceService: DeviceService
+    private deviceService: DeviceService,
+    private surveyService: SurveyService
   ) { }
 
   ngOnInit() {
-    this.deviceService.isConnect()
-      .subscribe(deviceConnected => {
-        if (!deviceConnected) {
+    const checkSurveyRunning = this.deviceService.isConnect()
+      .pipe(
+        switchMap(deviceConnected => {
+          if (!deviceConnected) {
+            this.switchSurvey('history');
+          }
+
+          return this.surveyService.isRun();
+        })
+      );
+
+    checkSurveyRunning
+      .subscribe(surveyRunning => {
+        if (surveyRunning) {
+          this.switchSurvey('running');
+        } else {
           this.switchSurvey('history');
         }
       });
