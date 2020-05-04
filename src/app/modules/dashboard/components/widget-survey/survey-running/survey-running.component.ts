@@ -1,19 +1,21 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Survey } from '@data/schema/survey';
 import { SurveyService } from '@data/services/survey.service';
 import { AlertController, ToastController } from '@ionic/angular';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
+import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-survey-running',
   templateUrl: './survey-running.component.html',
   styleUrls: ['./survey-running.component.scss'],
 })
-export class SurveyRunningComponent implements OnInit {
+export class SurveyRunningComponent implements OnInit, OnDestroy {
   @Output() switchSurvey = new EventEmitter<'history'>();
   eventRunning = false;
   mapOnline = false;
   surveyRunning: Survey;
+  surveyRunningSub: Subscription;
 
   constructor(
     private surveyService: SurveyService,
@@ -23,7 +25,12 @@ export class SurveyRunningComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.surveyRunning = this.surveyService.surveyRunning;
+    this.surveyRunningSub = this.surveyService.surveyRunning
+      .subscribe(surveyRunning => this.surveyRunning = surveyRunning);
+  }
+
+  ngOnDestroy() {
+    this.surveyRunningSub.unsubscribe();
   }
 
   async stopSurvey() {

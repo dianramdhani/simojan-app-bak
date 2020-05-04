@@ -29,14 +29,8 @@ export class CreateSurveyComponent implements OnInit {
   startSuvey() {
     this.bluetoothSerial.write('START')
       .then(() => {
-        const { name } = this.formCreateSurvey.value,
-          surveyRunning: Survey = {
-            name,
-            acc: null,
-            gps: null,
-            ts: null
-          };
-        this.surveyService.surveyRunning = surveyRunning;
+        const { name } = this.formCreateSurvey.value;
+        this.surveyService.start(name);
         this.modalController.dismiss();
       })
       .catch(async err => {
