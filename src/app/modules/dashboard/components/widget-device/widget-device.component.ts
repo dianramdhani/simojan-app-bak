@@ -3,6 +3,7 @@ import { ModalController, AlertController } from '@ionic/angular';
 
 import { DeviceSetupComponent } from '../../pages/device-setup/device-setup.component';
 import { DeviceService } from 'src/app/data/services/device.service';
+import { Device } from '@data/schema/device';
 
 @Component({
   selector: 'app-widget-device',
@@ -11,6 +12,7 @@ import { DeviceService } from 'src/app/data/services/device.service';
 })
 export class WidgetDeviceComponent implements OnInit {
   deviceConnected = false;
+  device: Device;
 
   constructor(
     private modalController: ModalController,
@@ -21,6 +23,7 @@ export class WidgetDeviceComponent implements OnInit {
   ngOnInit() {
     this.deviceService.isConnect()
       .subscribe(deviceConnected => {
+        this.device = this.deviceService.device;
         this.deviceConnected = deviceConnected;
       });
   }
@@ -30,7 +33,6 @@ export class WidgetDeviceComponent implements OnInit {
       component: DeviceSetupComponent
     });
     await modal.present();
-    this.deviceConnected = true;
   }
 
   async disconnect() {
@@ -40,15 +42,10 @@ export class WidgetDeviceComponent implements OnInit {
       buttons: [
         {
           text: 'No',
-          role: 'no',
-          handler: () => {
-            console.log('Confirm Cancel');
-          }
+          role: 'no'
         }, {
           text: 'Yes',
-          handler: () => {
-            this.deviceConnected = false;
-          }
+          handler: () => this.deviceService.disconnect()
         }
       ]
     });

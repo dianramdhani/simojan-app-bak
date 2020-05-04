@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, from } from 'rxjs';
+import { Observable, of, from, BehaviorSubject } from 'rxjs';
 import { Device } from '../schema/device';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 import { Bluetooth } from '@data/schema/bluetooth';
@@ -8,17 +8,31 @@ import { Bluetooth } from '@data/schema/bluetooth';
   providedIn: 'root'
 })
 export class DeviceService {
+  public connectSubject = new BehaviorSubject(false);
+
   constructor(
     private bluetoothSerial: BluetoothSerial
   ) { }
 
-  isConnect(): Observable<boolean> {
-    return of(false);
+  isConnect() {
+    return from(this.connectSubject);
   }
 
-  setDevice(device: Device) { }
+  disconnect() {
+    this._device = null;
+    this.connectSubject.next(false);
+  }
 
   listBluetooth(): Observable<Bluetooth[]> {
     return from(this.bluetoothSerial.list());
+  }
+
+  private _device: Device;
+  public get device(): Device {
+    return this._device;
+  }
+  public set device(value: Device) {
+    this._device = value;
+    this.connectSubject.next(true);
   }
 }

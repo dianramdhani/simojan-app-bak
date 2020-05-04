@@ -37,7 +37,7 @@ export class DeviceSetupComponent implements OnInit {
         deviceName,
         internetStatus: null
       };
-    this.deviceService.setDevice(device);
+    this.deviceService.device = device;
     this.modalController.dismiss();
   }
 }

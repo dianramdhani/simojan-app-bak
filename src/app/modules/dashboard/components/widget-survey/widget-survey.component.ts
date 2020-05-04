@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DeviceService } from '@data/services/device.service';
+
 @Component({
   selector: 'app-widget-survey',
   templateUrl: './widget-survey.component.html',
@@ -8,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 export class WidgetSurveyComponent implements OnInit {
   switchHistoryRunning = true;
 
-  constructor() { }
+  constructor(
+    private deviceService: DeviceService
+  ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.deviceService.isConnect()
+      .subscribe(deviceConnected => {
+        if (!deviceConnected) {
+          this.switchSurvey('history');
+        }
+      });
+  }
 
   switchSurvey(event: 'history' | 'running') {
     switch (event) {
