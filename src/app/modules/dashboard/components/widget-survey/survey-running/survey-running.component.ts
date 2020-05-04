@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-survey-running',
@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./survey-running.component.scss'],
 })
 export class SurveyRunningComponent implements OnInit {
+  @Output() switchSurvey = new EventEmitter<'history'>();
   eventRunning = false;
   mapOnline = false;
 
   constructor() { }
 
   ngOnInit() { }
+
+  stopSurvey() {
+    console.log('survey stopped');
+    this.switchSurvey.emit('history');
+  }
 }

@@ -1,1 +1,2 @@
-<app-survey-running></app-survey-running>
+<app-survey-history *ngIf="switchHistoryRunning" (switchSurvey)="switchSurvey($event)"></app-survey-history>
+<app-survey-running *ngIf="!switchHistoryRunning" (switchSurvey)="switchSurvey($event)"></app-survey-running>
